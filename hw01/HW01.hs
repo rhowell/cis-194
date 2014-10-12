@@ -49,4 +49,11 @@ expandDigits (x:xs) = (toDigits x) ++ (expandDigits xs)
 validate :: Integer -> Bool
 validate x = (sumDigits (expandDigits (doubleEveryOther (toDigits x)))) `mod` 10 == 0 
 
---
+-- Exercise 6
+type Peg = String
+type Move = (Peg, Peg)
+
+hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
+hanoi 0 a b c = []
+hanoi n a b c = hanoi (n-1) a c b ++ [(a,b)] ++ hanoi(n-1) c b a
+
